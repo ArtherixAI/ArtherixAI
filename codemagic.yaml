@@ -1,0 +1,20 @@
+workflows:
+  ios-workflow:
+    name: ArtherixAI Build
+
+    environment:
+      xcode: latest
+      cocoapods: default
+
+    scripts:
+      - name: Generate Xcode project
+        script: |
+          echo "⚠️ IMPORTANT: This is a SwiftUI app template"
+
+      - name: Build iOS app
+        script: |
+          xcodebuild clean build \
+          -scheme ArtherixAI \
+          -sdk iphoneos \
+          -configuration Release \
+          CODE_SIGNING_ALLOWED=NO
