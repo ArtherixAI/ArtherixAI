@@ -1,0 +1,25 @@
+workflows:
+  ios-workflow:
+    name: ArtherixAI iOS Build
+    environment:
+      xcode: latest
+      cocoapods: default
+
+    scripts:
+      - name: Clean
+        script: |
+          rm -rf build
+
+      - name: Install dependencies
+        script: |
+          pod install || echo "No Pods found"
+
+      - name: Build iOS app
+        script: |
+          xcodebuild clean build \
+          -sdk iphoneos \
+          -configuration Release \
+          CODE_SIGNING_ALLOWED=NO
+
+    artifacts:
+      - build/**/*.app
